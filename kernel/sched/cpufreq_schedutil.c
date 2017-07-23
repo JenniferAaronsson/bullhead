@@ -66,8 +66,8 @@ struct sugov_cpu {
 	struct sugov_policy *sg_policy;
 
 	bool iowait_boost_pending;
-	unsigned long iowait_boost;
-	unsigned long iowait_boost_max;
+	unsigned int iowait_boost;
+	unsigned int iowait_boost_max;
 	u64 last_update;
 
 	/* The fields below are only needed when sharing a policy. */
