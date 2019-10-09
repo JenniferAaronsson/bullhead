@@ -207,11 +207,6 @@ struct schedtune {
 #endif /* CONFIG_DYNAMIC_STUNE_BOOST */
 };
 
-static inline struct schedtune *css_st(struct cgroup_subsys_state *css)
-{
-	return css ? container_of(css, struct schedtune, css) : NULL;
-}
-
 static inline struct schedtune *cgroup_st(struct cgroup *cgrp) {
 	return container_of(cgroup_subsys_state(cgrp, schedtune_subsys_id), struct schedtune, css);
 }
@@ -937,7 +932,7 @@ static struct schedtune *getSchedtune(char *st_name)
 			break;
 		}
 
-		cgroup_name(st->css.cgroup, name_buf, sizeof(name_buf));
+		cgroup_name(st->css.cgroup);
 		if (strncmp(name_buf, st_name, strlen(st_name)) == 0)
 			return st;
 	}
