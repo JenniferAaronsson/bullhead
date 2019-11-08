@@ -806,18 +806,18 @@ boost_write(struct cgroup *cgrp, struct cftype *cft,
 
 #ifdef CONFIG_DYNAMIC_STUNE_BOOST
 static s64
-sched_boost_read(struct cgroup_subsys_state *css, struct cftype *cft)
+sched_boost_read(struct cgroup *cgrp, struct cftype *cft)
 {
-	struct schedtune *st = css_st(css);
+	struct schedtune *st = cgroup_st(cgrp);
 
 	return st->sched_boost;
 }
 
 static int
-sched_boost_write(struct cgroup_subsys_state *css, struct cftype *cft,
+sched_boost_write(struct cgroup *cgrp, struct cftype *cft,
 	    s64 sched_boost)
 {
-	struct schedtune *st = css_st(css);
+	struct schedtune *st = cgroup_st(cgrp);
 	st->sched_boost = sched_boost;
 
 	return 0;
